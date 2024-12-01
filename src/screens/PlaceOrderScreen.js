@@ -22,7 +22,7 @@ export default function PlaceOrderScreen() {
   cart.shippingPrice = cart.itemPrice > 100 ? round2(0) : round2(10);
   cart.taxPrice = round2(0.15 * cart.itemPrice);
   cart.totalPrice = cart.itemPrice + cart.shippingPrice + cart.taxPrice;
-  const placeOrdreHandler = async () => {
+  const placeOrderHandler = async () => {
     ctxDispatch({ type: "CART_CLEAR" });
     localStorage.removeItem("cartItems");
     toast.success("Order placed successfully.");
@@ -132,7 +132,7 @@ export default function PlaceOrderScreen() {
                   <div className="d-grid">
                     <Button
                       type="button"
-                      onClick={placeOrdreHandler}
+                      onClick={placeOrderHandler}
                       disabled={cart.cartItems.length === 0}
                     >
                       Placeorder

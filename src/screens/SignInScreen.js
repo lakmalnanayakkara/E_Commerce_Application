@@ -4,8 +4,6 @@ import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Store } from "../Store";
 import { toast } from "react-toastify";
-import { Formik } from "formik";
-import { object, string } from "yup";
 
 export default function SignInScreen() {
   const navigate = useNavigate();
@@ -16,12 +14,7 @@ export default function SignInScreen() {
   const [password, setPassword] = useState();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
-  const validationSchema = object({
-    email: string()
-      .email("Invalid email format.")
-      .required("Email is required"),
-    password: string().required("Password is required"),
-  });
+
   const submitHandler = (e) => {
     e.preventDefault();
     // const user = data.users.find(
@@ -51,51 +44,33 @@ export default function SignInScreen() {
         <title>Sign In</title>
       </Helmet>
       <h1 className="mb-3">Sign In</h1>
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        validationSchema={validationSchema}
-        onSubmit={submitHandler}
-      >
-        {({ handleSubmit, handleChange, values, errors, touched }) => (
-          <Form onSubmit={submitHandler}>
-            <Form.Group className="mb-3" controlId="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                required
-                onChange={(e) => setEmail(e.target.value)}
-                isInvalid={touched.email && !!errors.email}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                {errors.email}
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                required
-                onChange={(e) => setPassword(e.target.value)}
-                isInvalid={touched.password && !!errors.password}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                {errors.password}
-              </Form.Control.Feedback>
-            </Form.Group>
-            <div className="mb-3">
-              <Button type="submit">Sign In</Button>
-            </div>
-            <div className="mb-3">
-              New Customer?{" "}
-              <Link to={`/signup?redirect=${redirect}`}>
-                Create Your Account
-              </Link>
-            </div>
-          </Form>
-        )}
-      </Formik>
+      <Form noValidate onSubmit={submitHandler}>
+        <Form.Group className="mb-3" controlId="email">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
+            name="email"
+            required
+            onChange={(e) => setEmail(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            name="password"
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+        <div className="mb-3">
+          <Button type="submit">Sign In</Button>
+        </div>
+        <div className="mb-3">
+          New Customer?{" "}
+          <Link to={`/signup?redirect=${redirect}`}>Create Your Account</Link>
+        </div>
+      </Form>
     </Container>
   );
 }
