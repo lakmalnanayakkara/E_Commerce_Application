@@ -61,7 +61,7 @@ function App() {
             : "d-flex flex-column site-container"
         }
       >
-        <ToastContainer position="bottom-center" limit={1}></ToastContainer>
+        <ToastContainer position="top-center" limit={1}></ToastContainer>
         <header>
           <Navbar bg="dark" variant="dark">
             <Container>

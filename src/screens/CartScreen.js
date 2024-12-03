@@ -109,7 +109,7 @@ export default function CartScreen() {
                 <ListGroup.Item>
                   <div className="d-grid">
                     <Button
-                      type="butoon"
+                      type="button"
                       variant="primary"
                       onClick={checkoutHandler}
                       disabled={cartItems.length === 0}
