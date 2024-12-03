@@ -27,6 +27,7 @@ import SearchScreen from "./screens/SearchScreen";
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
+
   const signoutHandler = () => {
     ctxDispatch({ type: "USER_SIGNOUT" });
     localStorage.removeItem("userInfo");
@@ -42,8 +43,6 @@ function App() {
         const categoryData = [
           ...new Set(data.products.map((product) => product.category)),
         ];
-        console.log(categoryData);
-
         setCategories(categoryData);
       } catch (error) {
         toast.error("No categories found");
