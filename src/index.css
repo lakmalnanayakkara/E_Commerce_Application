@@ -70,3 +70,9 @@ main {
 .active-nav {
   left: 0px;
 }
+
+@media (max-width: 991px) {
+  .search-box {
+    margin: 10px;
+  }
+}

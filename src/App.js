@@ -62,7 +62,7 @@ function App() {
       >
         <ToastContainer position="top-center" limit={1}></ToastContainer>
         <header>
-          <Navbar bg="dark" variant="dark">
+          <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
               <Button
                 variant="dark"
